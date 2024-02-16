@@ -17,7 +17,10 @@ service = build('drive', 'v3', credentials=credentials)
 
 # results = service.files().list(pageSize=1000, fields="nextPageToken, files(id, name, mimeType, size, modifiedTime)", q='name contains "de"').execute()
 
-results = service.files().list(pageSize=1000, fields="nextPageToken, files(id, name, mimeType, size, modifiedTime)").execute()
+results = (service
+            .files()
+            .list(pageSize=1000, fields="nextPageToken, files(id, name, mimeType, size, modifiedTime)")
+            .execute())
 
 items = results.get('files', [])
 
